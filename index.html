@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizon Caffee Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e4057;
+            --accent: #ffb347;
+            --bg-gradient: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+            --glass: rgba(255,255,255,0.7);
+            --glass-blur: blur(12px);
+            --shadow: 0 8px 32px 0 rgba(46,64,87,0.18);
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #2d2d2d;
+            overflow-x: hidden;
+        }
+        .glass-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: var(--glass-blur);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 2.5rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            filter: drop-shadow(0 2px 8px #ffb34744);
+        }
+        .logo-text {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #6b7a8f;
+            font-weight: 500;
+            max-width: 320px;
+            text-align: right;
+            margin-left: auto;
+            margin-right: 1.5rem;
+            white-space: normal;
+            word-break: break-word;
+        }
+        .hero {
+            width: 100vw;
+            min-height: 45vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(120deg, #e0e7ef 60%, #ffecd2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            opacity: 0.18;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem 1rem 2rem 1rem;
+        }
+        .hero-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px #fff8;
+        }
+        .hero-desc {
+            font-size: 1.3rem;
+            color: #3a5a7a;
+            margin-bottom: 1.5rem;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 0.8rem 2.2rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px #ffb34733;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .hero-cta:hover {
+            background: #ff9800;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .menu-section {
+            max-width: 1100px;
+            margin: 3.5rem auto 2.5rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 0 1.5rem;
+        }
+        .menu-card {
+            background: var(--glass);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card:hover {
+            transform: translateY(-8px) scale(1.025);
+            box-shadow: 0 12px 36px 0 #2e405733;
+        }
+        .menu-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.7rem;
+            filter: drop-shadow(0 2px 8px #ffb34744);
+        }
+        .menu-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1.1rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .menu-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.7rem 0;
+            border-bottom: 1px dashed #e0e7ef;
+            transition: background 0.18s;
+            border-radius: 8px;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item:hover {
+            background: #ffecd2cc;
+        }
+        .item-name {
+            font-weight: 600;
+            font-size: 1.08rem;
+        }
+        .item-desc {
+            color: #6b7a8f;
+            font-size: 0.98rem;
+            margin-top: 0.1rem;
+        }
+        .item-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.08rem;
+            margin-left: 1.5rem;
+            white-space: nowrap;
+        }
+        footer {
+            text-align: center;
+            padding: 2.2rem 0 2.5rem 0;
+            color: #7a8ca3;
+            font-size: 1.1rem;
+            background: none;
+            margin-top: 2rem;
+        }
+        .footer-social {
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .footer-social a {
+            color: var(--primary);
+            margin: 0 0.5rem;
+            font-size: 1.4rem;
+            transition: color 0.18s;
+        }
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+        @media (max-width: 900px) {
+            .tagline {
+                font-size: 0.98rem;
+                max-width: 180px;
+                margin-right: 0.5rem;
+            }
+        }
+        @media (max-width: 700px) {
+            .glass-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.7rem 1rem;
+                align-items: flex-start;
+            }
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            .tagline {
+                text-align: left;
+                margin: 0 0 0.5rem 0;
+                max-width: 100%;
+                font-size: 0.95rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .menu-section {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .menu-card {
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-header">
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-mug-hot"></i></span>
+            <span class="logo-text">Horizon Caffee</span>
+        </div>
+        <span class="tagline">Est. 2025 &mdash; Owner: Haidar Khalifa</span>
+    </div>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-title">Welcome to Horizon Caffee</div>
+            <div class="hero-desc">Sip, Savor, Smile. Discover our creative menu of drinks and treats crafted with passion.</div>
+            <a href="#menu" class="hero-cta">Explore Menu <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+    <section class="menu-section" id="menu">
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-coffee"></i></div>
+            <div class="menu-title">Hot Drinks</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Single Espresso</span><div class="item-desc">Pure Arabica shot, bold and intense.</div></div><span class="item-price">60,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Double Espresso</span><div class="item-desc">Double the espresso, double the kick!</div></div><span class="item-price">90,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Latte</span><div class="item-desc">Espresso blended with silky steamed milk.</div></div><span class="item-price">210,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Cappuccino</span><div class="item-desc">Espresso, steamed milk, and a cloud of foam.</div></div><span class="item-price">240,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Dark Mocha</span><div class="item-desc">Espresso, rich chocolate, and steamed milk.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">White Mocha</span><div class="item-desc">Espresso, creamy white chocolate, and milk.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Caramel Latte</span><div class="item-desc">Espresso, steamed milk, and caramel drizzle.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Vanilla Latte</span><div class="item-desc">Espresso, steamed milk, and vanilla syrup.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Hot Chocolate</span><div class="item-desc">Rich cocoa, steamed milk, and whipped cream.</div></div><span class="item-price">330,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Matcha Latte</span><div class="item-desc">Japanese matcha whisked with creamy milk.</div></div><span class="item-price">350,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-ice-cream"></i></div>
+            <div class="menu-title">Cold Drinks - Milkshakes</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Vanilla Milkshake</span><div class="item-desc">Creamy vanilla ice cream, fresh milk, and a swirl of love.</div></div><span class="item-price">320,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Chocolate Milkshake</span><div class="item-desc">Chocolate ice cream, milk, and a chocolatey finish.</div></div><span class="item-price">320,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Caramel Milkshake</span><div class="item-desc">Caramel ice cream, milk, and golden caramel sauce.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Strawberry Milkshake</span><div class="item-desc">Strawberry ice cream, milk, and real strawberry pieces.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Lotus Milkshake</span><div class="item-desc">Lotus biscuits, ice cream, and creamy milk blend.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Oreo Milkshake</span><div class="item-desc">Crushed Oreos, vanilla ice cream, and milk.</div></div><span class="item-price">350,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-lemon"></i></div>
+            <div class="menu-title">Smoothies</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Mango</span><div class="item-desc">Fresh mango, ice, and a splash of sunshine.</div></div><span class="item-price">320,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Strawberry</span><div class="item-desc">Juicy strawberries, ice, and a hint of sweetness.</div></div><span class="item-price">320,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Passion Fruit</span><div class="item-desc">Exotic passion fruit, ice, and a tropical twist.</div></div><span class="item-price">320,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Mixed Flavors</span><div class="item-desc">A blend of seasonal fruits, ice, and pure refreshment.</div></div><span class="item-price">360,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-blender"></i></div>
+            <div class="menu-title">Frappuccino</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Vanilla</span><div class="item-desc">Iced coffee, vanilla syrup, and whipped cream.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Chocolate</span><div class="item-desc">Iced coffee, chocolate syrup, and whipped cream.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Caramel</span><div class="item-desc">Iced coffee, caramel syrup, and whipped cream.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Matcha Frappe</span><div class="item-desc">Iced matcha, milk, and a creamy finish.</div></div><span class="item-price">370,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-wind"></i></div>
+            <div class="menu-title">Coolers</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Ice Coffee</span><div class="item-desc">Chilled coffee, ice, and a cool breeze.</div></div><span class="item-price">200,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Ice Latte</span><div class="item-desc">Espresso, cold milk, and ice cubes.</div></div><span class="item-price">250,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Vanilla Iced Latte</span><div class="item-desc">Espresso, cold milk, vanilla syrup, and ice.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Caramel Iced Latte</span><div class="item-desc">Espresso, cold milk, caramel syrup, and ice.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Iced Dark Mocha</span><div class="item-desc">Espresso, dark chocolate, milk, and ice.</div></div><span class="item-price">350,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Iced White Mocha</span><div class="item-desc">Espresso, white chocolate, milk, and ice.</div></div><span class="item-price">350,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-bread-slice"></i></div>
+            <div class="menu-title">Croissants & Sandwiches</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">Kashkawan</span><div class="item-desc">Melted kashkawan cheese in a buttery croissant.</div></div><span class="item-price">250,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Kashkawan + Habash</span><div class="item-desc">Kashkawan cheese and smoked turkey, perfectly paired.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Kashkawan + Pepperoni</span><div class="item-desc">Kashkawan cheese and spicy pepperoni in a croissant.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Nutella</span><div class="item-desc">Creamy Nutella spread in a warm croissant.</div></div><span class="item-price">250,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Add: Scoop Ice Cream</span><div class="item-desc">A scoop of creamy vanilla ice cream.</div></div><span class="item-price">70,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Add: Brownies</span><div class="item-desc">Rich, fudgy brownie bites.</div></div><span class="item-price">50,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Add: Fruits</span><div class="item-desc">Fresh seasonal fruit topping.</div></div><span class="item-price">100,000</span></li>
+            </ul>
+        </div>
+        <div class="menu-card">
+            <div class="menu-icon"><i class="fas fa-pancakes"></i></div>
+            <div class="menu-title">Pancakes</div>
+            <ul class="menu-items">
+                <li class="menu-item"><div><span class="item-name">3 Layers</span><div class="item-desc">Fluffy pancakes stacked high, served with syrupy delight.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">5 Layers</span><div class="item-desc">Five golden pancakes, perfect for sharing.</div></div><span class="item-price">450,000</span></li>
+                <li class="menu-item"><div><span class="item-name">10 Mini Pancakes</span><div class="item-desc">Ten bite-sized pancakes, fun and fluffy.</div></div><span class="item-price">300,000</span></li>
+                <li class="menu-item"><div><span class="item-name">15 Mini Pancakes</span><div class="item-desc">Fifteen mini pancakes, a party on your plate!</div></div><span class="item-price">450,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Add: Fruits</span><div class="item-desc">Fresh fruit medley for a sweet touch.</div></div><span class="item-price">100,000</span></li>
+                <li class="menu-item"><div><span class="item-name">Add: Marshmello</span><div class="item-desc">Soft, gooey marshmallows for extra fun.</div></div><span class="item-price">50,000</span></li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        &copy; 2025 Horizon Caffee. Crafted with <span style="color:#ffb347">&hearts;</span> by Haidar Khalifa.
+    </footer>
+</body>
+</html>
